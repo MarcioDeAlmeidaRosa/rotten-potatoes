@@ -24,9 +24,13 @@ services:
     image: mongo:5.0
     networks: 
       - lb_rotten
+    volumes: 
+      - vol_db:/data/db
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=KM91TYkypB78
+volumes: 
+  vol_db
 
 networks: 
   lb_rotten:
