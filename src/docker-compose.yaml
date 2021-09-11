@@ -3,7 +3,7 @@ version: "3.9"
 services: 
   
   rotten_potatoe_service:
-    image: marcioalmeidarosa/rotten-potatoes
+    image: marcioalmeidarosa/rotten-potatoes:1.0
     build: 
       context: .
       dockerfile: ./Dockerfile
@@ -20,7 +20,6 @@ services:
     ports: 
       - 8085:5000
   
-
   mongo_service:
     image: mongo:5.0
     networks: 
@@ -28,8 +27,6 @@ services:
     environment: 
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=KM91TYkypB78
-    ports: 
-      - 27017:27017
 
 networks: 
   lb_rotten:
