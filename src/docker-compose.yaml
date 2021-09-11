@@ -1,0 +1,36 @@
+version: "3.9"
+
+services: 
+  
+  rotten_potatoe_service:
+    image: marcioalmeidarosa/rotten-potatoes
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    environment: 
+      - MONGODB_DB=admin
+      - MONGODB_HOST=mongo_service
+      - MONGODB_PORT=27017
+      - MONGODB_USERNAME=admin
+      - MONGODB_PASSWORD=KM91TYkypB78
+    networks: 
+      - lb_rotten
+    depends_on: 
+      - mongo_service
+    ports: 
+      - 8085:5000
+  
+
+  mongo_service:
+    image: mongo:5.0
+    networks: 
+      - lb_rotten
+    environment: 
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=KM91TYkypB78
+    ports: 
+      - 27017:27017
+
+networks: 
+  lb_rotten:
+    driver: bridge
